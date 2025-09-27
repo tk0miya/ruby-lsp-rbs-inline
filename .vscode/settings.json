@@ -13,7 +13,7 @@
     ],
     "rubyLsp.addonSettings": {
         "ruby-lsp-rbs-inline": {
-            "opt-out": true
+            "opt_out": true
         }
     }
 }
