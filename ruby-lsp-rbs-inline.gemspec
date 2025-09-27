@@ -2,7 +2,7 @@
 
 require_relative "lib/ruby_lsp/rbs/inline/version"
 
-Gem::Specification.new do |spec|
+Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
   spec.name = "ruby-lsp-rbs-inline"
   spec.version = RubyLsp::Rbs::Inline::VERSION
   spec.authors = ["Takeshi KOMIYA"]
