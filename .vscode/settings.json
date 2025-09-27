@@ -13,7 +13,8 @@
     ],
     "rubyLsp.addonSettings": {
         "ruby-lsp-rbs-inline": {
-            "opt_out": true
+            "opt_out": true,
+            "signature_path": "sig"
         }
     }
 }

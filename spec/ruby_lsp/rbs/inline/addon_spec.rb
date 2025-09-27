@@ -19,7 +19,8 @@ RSpec.describe RubyLsp::Rbs::Inline::Addon do
     let(:global_state) { instance_double(RubyLsp::GlobalState, settings_for_addon:, workspace_path:) }
     let(:message_queue) { Thread::Queue.new }
     let(:workspace_path) { Pathname.new(Dir.mktmpdir) }
-    let(:settings_for_addon) { { opt_out: }.compact }
+    let(:settings_for_addon) { { signature_path:, opt_out: }.compact }
+    let(:signature_path) { nil }
     let(:opt_out) { nil }
 
     context "when file creation is received" do
@@ -37,28 +38,30 @@ RSpec.describe RubyLsp::Rbs::Inline::Addon do
       let(:rb_path) { workspace_path / "path/to/file.rb" }
       let(:rbs_path) { workspace_path / "sig/generated/path/to/file.rbs" }
 
-      context "when rbs-inline is enabled per file" do
-        let(:content) { "# rbs_inline: enabled\nclass File; end" }
+      describe "opt_out option" do
+        context "when rbs-inline is enabled per file" do
+          let(:content) { "# rbs_inline: enabled\nclass File; end" }
 
-        context "when opt-out option is true" do
-          let(:opt_out) { true }
+          context "when opt-out option is true" do
+            let(:opt_out) { true }
 
-          it "generates the corresponding RBS file" do
-            subject
+            it "generates the corresponding RBS file" do
+              subject
 
-            expect(rbs_path).to exist
-            expect(rbs_path.read).to include "class File"
+              expect(rbs_path).to exist
+              expect(rbs_path.read).to include "class File"
+            end
           end
-        end
 
-        context "when opt-out option is false" do
-          let(:opt_out) { false }
+          context "when opt-out option is false" do
+            let(:opt_out) { false }
 
-          it "generates the corresponding RBS file" do
-            subject
+            it "generates the corresponding RBS file" do
+              subject
 
-            expect(rbs_path).to exist
-            expect(rbs_path.read).to include "class File"
+              expect(rbs_path).to exist
+              expect(rbs_path.read).to include "class File"
+            end
           end
         end
       end
@@ -84,6 +87,35 @@ RSpec.describe RubyLsp::Rbs::Inline::Addon do
             subject
 
             expect(rbs_path).not_to exist
+          end
+        end
+      end
+
+      describe "signature_path option" do
+        let(:content) { "# rbs_inline: enabled\nclass File; end" }
+
+        context "when signature_path is not given" do
+          let(:signature_path) { nil }
+          let(:rbs_path) { workspace_path / "sig/generated/path/to/file.rbs" }
+
+          it "generates the corresponding RBS file under sig/generated directory" do
+            subject
+
+            expect(rbs_path).to exist
+            expect(rbs_path.read).to include "class File"
+          end
+        end
+
+        context "when signature_path is given" do
+          let(:signature_path) { "sig/rbs-inline" }
+
+          let(:rbs_path) { workspace_path / signature_path / "path/to/file.rbs" }
+
+          it "generates the corresponding RBS file under the given directory" do
+            subject
+
+            expect(rbs_path).to exist
+            expect(rbs_path.read).to include "class File"
           end
         end
       end

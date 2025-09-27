@@ -31,6 +31,8 @@ module RubyLsp
 
         def opt_out?: () -> bool
 
+        def signature_path: () -> String
+
         # @rbs uri: String
         def generate_signature: (String uri) -> void
 

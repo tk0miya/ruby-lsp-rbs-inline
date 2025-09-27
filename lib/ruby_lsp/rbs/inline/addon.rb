@@ -54,12 +54,16 @@ module RubyLsp
           settings.fetch(:opt_out, false)
         end
 
+        def signature_path #: String
+          settings.fetch(:signature_path, "sig/generated")
+        end
+
         # @rbs uri: String
         def generate_signature(uri) #: void
           path = uri_to_path(uri)
           return unless path.extname == ".rb"
 
-          options = ["--output"]
+          options = ["--output=#{signature_path}"]
           options << "--opt-out" if opt_out?
           system("rbs-inline", *options, path.to_s, chdir: workspace_path.to_s)
           logger.info("Generate RBS signature: #{path}")
@@ -88,7 +92,7 @@ module RubyLsp
         end
 
         def signature_root_dir #: Pathname
-          workspace_path / "sig/generated"
+          workspace_path / signature_path
         end
 
         # @rbs uri: String
