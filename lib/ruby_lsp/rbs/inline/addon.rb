@@ -35,7 +35,7 @@ module RubyLsp
           changes.each do |change|
             case change[:type]
             when FileChangeType::CREATED, FileChangeType::CHANGED
-              # TODO
+              generate_signature(change[:uri])
             when FileChangeType::DELETED
               delete_signature(change[:uri])
             end
@@ -43,6 +43,18 @@ module RubyLsp
         end
 
         private
+
+        # @rbs uri: String
+        def generate_signature(uri) #: void
+          path = uri_to_path(uri)
+          return unless path.extname == ".rb"
+
+          command = ["rbs-inline", "--output", "--opt-out", path.to_s]
+          system(*command, chdir: workspace_path.to_s)
+          logger.info("Generate RBS signature: #{path}")
+        rescue StandardError => e
+          logger.info("Failed to generate signature for #{path}: #{e.message}")
+        end
 
         # @rbs uri: String
         def delete_signature(uri) #: void

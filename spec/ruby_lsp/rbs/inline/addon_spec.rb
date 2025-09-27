@@ -20,6 +20,52 @@ RSpec.describe RubyLsp::Rbs::Inline::Addon do
     let(:message_queue) { Thread::Queue.new }
     let(:workspace_path) { Pathname.new(Dir.mktmpdir) }
 
+    context "when file creation is received" do
+      before do
+        rb_path.parent.mkpath
+        rb_path.write("class File; end")
+      end
+
+      let(:changes) do
+        [
+          { uri: "file:///#{workspace_path}/path/to/file.rb",
+            type: FileChangeType::CREATED }
+        ]
+      end
+      let(:rb_path) { workspace_path / "path/to/file.rb" }
+      let(:rbs_path) { workspace_path / "sig/generated/path/to/file.rbs" }
+
+      it "generates the corresponding RBS file" do
+        subject
+
+        expect(rbs_path).to exist
+        expect(rbs_path.read).to include "class File"
+      end
+    end
+
+    context "when file change is received" do
+      before do
+        rb_path.parent.mkpath
+        rb_path.write("class File; end")
+      end
+
+      let(:changes) do
+        [
+          { uri: "file:///#{workspace_path}/path/to/file.rb",
+            type: FileChangeType::CHANGED }
+        ]
+      end
+      let(:rb_path) { workspace_path / "path/to/file.rb" }
+      let(:rbs_path) { workspace_path / "sig/generated/path/to/file.rbs" }
+
+      it "generates the corresponding RBS file" do
+        subject
+
+        expect(rbs_path).to exist
+        expect(rbs_path.read).to include "class File"
+      end
+    end
+
     context "when file deleted is received" do
       let(:changes) do
         [

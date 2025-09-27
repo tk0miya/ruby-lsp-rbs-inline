@@ -26,6 +26,9 @@ module RubyLsp
         private
 
         # @rbs uri: String
+        def generate_signature: (String uri) -> void
+
+        # @rbs uri: String
         def delete_signature: (String uri) -> void
 
         @workspace_path: Pathname?
