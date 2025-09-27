@@ -5,11 +5,13 @@
     "cSpell.words": [
         "bindir",
         "fnmatch",
+        "Isig",
         "KOMIYA",
         "lsp",
         "mkpath",
         "readlines",
         "rmtree",
+        "strscan",
         "Takeshi"
     ],
     "rubyLsp.addonSettings": {

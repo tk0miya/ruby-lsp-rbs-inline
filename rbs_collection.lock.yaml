@@ -125,6 +125,10 @@ gems:
     revision: e2034fcc1cfb92bdb3099354c4ade15722d63138
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
+- name: strscan
+  version: '0'
+  source:
+    type: stdlib
 - name: tsort
   version: '0'
   source:
