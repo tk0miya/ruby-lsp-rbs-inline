@@ -31,4 +31,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "rbs-inline"
   spec.add_dependency "ruby-lsp"
+  spec.metadata["rubygems_mfa_required"] = "true"
 end
