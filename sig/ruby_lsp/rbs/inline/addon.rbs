@@ -33,6 +33,8 @@ module RubyLsp
 
         def signature_path: () -> String
 
+        def ignore_paths: () -> Array[String]
+
         # @rbs uri: String
         def generate_signature: (String uri) -> void
 
@@ -47,6 +49,9 @@ module RubyLsp
 
         # @rbs uri: String
         def uri_to_path: (String uri) -> Pathname
+
+        # @rbs path: Pathname
+        def ignored?: (Pathname path) -> bool
       end
     end
   end

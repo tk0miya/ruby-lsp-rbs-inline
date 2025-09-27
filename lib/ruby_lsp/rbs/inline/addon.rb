@@ -58,10 +58,15 @@ module RubyLsp
           settings.fetch(:signature_path, "sig/generated")
         end
 
+        def ignore_paths #: Array[String]
+          settings.fetch(:ignore_paths, ["tests/**/*.rb", "spec/**/*.rb"])
+        end
+
         # @rbs uri: String
         def generate_signature(uri) #: void
           path = uri_to_path(uri)
           return unless path.extname == ".rb"
+          return if ignored?(path)
 
           options = ["--output=#{signature_path}"]
           options << "--opt-out" if opt_out?
@@ -99,6 +104,11 @@ module RubyLsp
         def uri_to_path(uri) #: Pathname
           path = uri.delete_prefix("file://")
           Pathname.new(path).relative_path_from(workspace_path)
+        end
+
+        # @rbs path: Pathname
+        def ignored?(path) #: bool
+          ignore_paths.any? { path.fnmatch?(_1) }
         end
       end
     end

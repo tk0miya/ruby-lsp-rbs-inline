@@ -19,9 +19,10 @@ RSpec.describe RubyLsp::Rbs::Inline::Addon do
     let(:global_state) { instance_double(RubyLsp::GlobalState, settings_for_addon:, workspace_path:) }
     let(:message_queue) { Thread::Queue.new }
     let(:workspace_path) { Pathname.new(Dir.mktmpdir) }
-    let(:settings_for_addon) { { signature_path:, opt_out: }.compact }
+    let(:settings_for_addon) { { signature_path:, opt_out:, ignore_paths: }.compact }
     let(:signature_path) { nil }
     let(:opt_out) { nil }
+    let(:ignore_paths) { nil }
 
     context "when file creation is received" do
       before do
@@ -116,6 +117,19 @@ RSpec.describe RubyLsp::Rbs::Inline::Addon do
 
             expect(rbs_path).to exist
             expect(rbs_path.read).to include "class File"
+          end
+        end
+      end
+
+      describe "ignore_paths option" do
+        context "when the created file matches ignore_paths" do
+          let(:ignore_paths) { ["path/to/*.rb"] }
+          let(:content) { "# rbs_inline: enabled\nclass File; end" }
+
+          it "does not generate the corresponding RBS file" do
+            subject
+
+            expect(rbs_path).not_to exist
           end
         end
       end
