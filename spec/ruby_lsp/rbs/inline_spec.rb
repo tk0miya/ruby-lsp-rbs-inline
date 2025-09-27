@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-RSpec.describe Ruby::Lsp::Rbs::Inline do
+RSpec.describe RubyLsp::Rbs::Inline do
   it "has a version number" do
-    expect(Ruby::Lsp::Rbs::Inline::VERSION).not_to be nil
+    expect(RubyLsp::Rbs::Inline::VERSION).not_to be nil
   end
 
   it "does something useful" do
