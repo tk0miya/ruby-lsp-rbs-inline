@@ -4,6 +4,8 @@ module RubyLsp
   module Rbs
     module Inline
       class Addon < ::RubyLsp::Addon
+        include LanguageServer::Protocol::Constant
+
         attr_reader global_state: GlobalState
 
         attr_reader logger: Logger
