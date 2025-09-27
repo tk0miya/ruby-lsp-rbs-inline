@@ -6,7 +6,9 @@
         "bindir",
         "KOMIYA",
         "lsp",
+        "mkpath",
         "readlines",
+        "rmtree",
         "Takeshi"
     ]
 }
