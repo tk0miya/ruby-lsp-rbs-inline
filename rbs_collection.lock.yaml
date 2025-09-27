@@ -70,7 +70,7 @@ gems:
   source:
     type: stdlib
 - name: prism
-  version: 1.5.1
+  version: 1.2.0
   source:
     type: rubygems
 - name: rainbow
@@ -91,6 +91,10 @@ gems:
     repo_dir: gems
 - name: rbs
   version: 3.9.5
+  source:
+    type: rubygems
+- name: rbs-inline
+  version: 0.11.0
   source:
     type: rubygems
 - name: rdoc
@@ -114,7 +118,7 @@ gems:
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: rubocop-ast
-  version: '1.46'
+  version: '1.30'
   source:
     type: git
     name: ruby/gem_rbs_collection
