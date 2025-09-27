@@ -25,6 +25,12 @@ module RubyLsp
 
         private
 
+        @settings: Hash[Symbol, untyped]?
+
+        def settings: () -> Hash[Symbol, untyped]
+
+        def opt_out?: () -> bool
+
         # @rbs uri: String
         def generate_signature: (String uri) -> void
 

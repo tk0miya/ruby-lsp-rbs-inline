@@ -10,5 +10,10 @@
         "readlines",
         "rmtree",
         "Takeshi"
-    ]
+    ],
+    "rubyLsp.addonSettings": {
+        "ruby-lsp-rbs-inline": {
+            "opt-out": true
+        }
+    }
 }

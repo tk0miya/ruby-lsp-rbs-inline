@@ -16,14 +16,16 @@ RSpec.describe RubyLsp::Rbs::Inline::Addon do
     after { workspace_path.rmtree }
 
     let(:addon) { described_class.new }
-    let(:global_state) { instance_double(RubyLsp::GlobalState, workspace_path:) }
+    let(:global_state) { instance_double(RubyLsp::GlobalState, settings_for_addon:, workspace_path:) }
     let(:message_queue) { Thread::Queue.new }
     let(:workspace_path) { Pathname.new(Dir.mktmpdir) }
+    let(:settings_for_addon) { { opt_out: }.compact }
+    let(:opt_out) { nil }
 
     context "when file creation is received" do
       before do
         rb_path.parent.mkpath
-        rb_path.write("class File; end")
+        rb_path.write(content)
       end
 
       let(:changes) do
@@ -35,18 +37,62 @@ RSpec.describe RubyLsp::Rbs::Inline::Addon do
       let(:rb_path) { workspace_path / "path/to/file.rb" }
       let(:rbs_path) { workspace_path / "sig/generated/path/to/file.rbs" }
 
-      it "generates the corresponding RBS file" do
-        subject
+      context "when rbs-inline is enabled per file" do
+        let(:content) { "# rbs_inline: enabled\nclass File; end" }
 
-        expect(rbs_path).to exist
-        expect(rbs_path.read).to include "class File"
+        context "when opt-out option is true" do
+          let(:opt_out) { true }
+
+          it "generates the corresponding RBS file" do
+            subject
+
+            expect(rbs_path).to exist
+            expect(rbs_path.read).to include "class File"
+          end
+        end
+
+        context "when opt-out option is false" do
+          let(:opt_out) { false }
+
+          it "generates the corresponding RBS file" do
+            subject
+
+            expect(rbs_path).to exist
+            expect(rbs_path.read).to include "class File"
+          end
+        end
+      end
+
+      context "when rbs-inline is not enabled per file" do
+        let(:content) { "class File; end" }
+
+        context "when opt-out option is true" do
+          let(:opt_out) { true }
+
+          it "generates the corresponding RBS file" do
+            subject
+
+            expect(rbs_path).to exist
+            expect(rbs_path.read).to include "class File"
+          end
+        end
+
+        context "when opt-out option is false" do
+          let(:opt_out) { false }
+
+          it "does not generate the corresponding RBS file" do
+            subject
+
+            expect(rbs_path).not_to exist
+          end
+        end
       end
     end
 
     context "when file change is received" do
       before do
         rb_path.parent.mkpath
-        rb_path.write("class File; end")
+        rb_path.write("# rbs_inline: enabled\nclass File; end")
       end
 
       let(:changes) do

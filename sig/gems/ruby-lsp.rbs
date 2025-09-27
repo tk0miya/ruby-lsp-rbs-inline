@@ -4,6 +4,8 @@ module RubyLsp
 
   class GlobalState
     attr_reader workspace_path: String
+
+    def settings_for_addon: (String name) -> Hash[Symbol, untyped]?
   end
 
 

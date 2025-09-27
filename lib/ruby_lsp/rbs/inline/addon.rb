@@ -23,7 +23,7 @@ module RubyLsp
         end
 
         def name #: String
-          "ruby-lsp-rbs_rails"
+          "ruby-lsp-rbs-inline"
         end
 
         def version #: String
@@ -44,13 +44,24 @@ module RubyLsp
 
         private
 
+        # @rbs @settings: Hash[Symbol, untyped]?
+
+        def settings #: Hash[Symbol, untyped]
+          @settings ||= global_state.settings_for_addon(name) || {}
+        end
+
+        def opt_out? #: bool
+          settings.fetch(:opt_out, false)
+        end
+
         # @rbs uri: String
         def generate_signature(uri) #: void
           path = uri_to_path(uri)
           return unless path.extname == ".rb"
 
-          command = ["rbs-inline", "--output", "--opt-out", path.to_s]
-          system(*command, chdir: workspace_path.to_s)
+          options = ["--output"]
+          options << "--opt-out" if opt_out?
+          system("rbs-inline", *options, path.to_s, chdir: workspace_path.to_s)
           logger.info("Generate RBS signature: #{path}")
         rescue StandardError => e
           logger.info("Failed to generate signature for #{path}: #{e.message}")
