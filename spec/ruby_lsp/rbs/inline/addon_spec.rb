@@ -3,6 +3,7 @@
 require "language_server-protocol"
 require "ruby_lsp/global_state"
 require "ruby_lsp/rbs/inline/addon"
+require "pathname"
 require "tempfile"
 
 include LanguageServer::Protocol::Constant # rubocop:disable Style/MixinUsage
