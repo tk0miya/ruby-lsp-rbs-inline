@@ -8,7 +8,7 @@ gemspec
 gem "irb"
 gem "rake", "~> 13.3"
 
-gem "rspec", "~> 3.0"
+gem "rspec", "~> 3.13"
 
 gem "rubocop", "~> 1.81"
 gem "ruby-lsp-rspec", require: false
