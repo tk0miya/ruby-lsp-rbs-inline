@@ -10,6 +10,6 @@ gem "rake", "~> 13.4"
 
 gem "rspec", "~> 3.13"
 
-gem "rubocop", "~> 1.86"
+gem "rubocop", "~> 1.87"
 gem "ruby-lsp-rspec", require: false
 gem "steep", require: false
