@@ -9,7 +9,7 @@ RSpec::Core::RakeTask.new(:spec)
 
 task default: :ci
 
-task ci: %i[rubocop spec steep]
+task ci: %i[rubocop spec steep rbs:validate]
 
 namespace :rbs do
   desc "Install RBS signatures"
@@ -20,6 +20,11 @@ namespace :rbs do
   desc "Generate RBS files"
   task :generate do
     sh "rbs-inline", "--opt-out", "--output=sig", "lib"
+  end
+
+  desc "Validate RBS files"
+  task validate: "rbs:install" do
+    sh "bundle exec rbs -Isig validate"
   end
 end
 
