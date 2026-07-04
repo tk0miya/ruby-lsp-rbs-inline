@@ -2,7 +2,7 @@
 
 require_relative "lib/ruby_lsp/rbs/inline/version"
 
-Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
+Gem::Specification.new do |spec|
   spec.name = "ruby-lsp-rbs-inline"
   spec.version = RubyLsp::Rbs::Inline::VERSION
   spec.authors = ["Takeshi KOMIYA"]
@@ -26,7 +26,7 @@ Gem::Specification.new do |spec| # rubocop:disable Metrics/BlockLength
     end
   end
   spec.bindir = "exe"
-  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.executables = spec.files.grep(%r{\Aexe/}) { File.basename(_1) }
   spec.require_paths = ["lib"]
 
   spec.add_dependency "language_server-protocol"

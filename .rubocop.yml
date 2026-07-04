@@ -30,7 +30,7 @@ RSpec/ExampleLength:
   Enabled: false
 
 RSpec/MultipleMemoizedHelpers:
-  Max: 10
+  Enabled: false
 
 RSpec/MultipleExpectations:
   Enabled: false
@@ -39,7 +39,7 @@ RSpec/NamedSubject:
   Enabled: false
 
 RSpec/NestedGroups:
-  Max: 5
+  Enabled: false
 
 # RbsInline
 Style/RbsInline/MissingTypeAnnotation:
