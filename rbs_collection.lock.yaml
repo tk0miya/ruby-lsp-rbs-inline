@@ -6,7 +6,7 @@ gems:
   source:
     type: git
     name: ruby/gem_rbs_collection
-    revision: 82762423fc5694b82888ea89a972847cf19838c2
+    revision: 2443035126922ee49f775a0edb0b705896fef7c6
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: diff-lcs
@@ -14,7 +14,7 @@ gems:
   source:
     type: git
     name: ruby/gem_rbs_collection
-    revision: 82762423fc5694b82888ea89a972847cf19838c2
+    revision: 2443035126922ee49f775a0edb0b705896fef7c6
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: fileutils
@@ -38,7 +38,7 @@ gems:
   source:
     type: git
     name: ruby/gem_rbs_collection
-    revision: 82762423fc5694b82888ea89a972847cf19838c2
+    revision: 2443035126922ee49f775a0edb0b705896fef7c6
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: logger
@@ -46,7 +46,7 @@ gems:
   source:
     type: git
     name: ruby/gem_rbs_collection
-    revision: 82762423fc5694b82888ea89a972847cf19838c2
+    revision: 2443035126922ee49f775a0edb0b705896fef7c6
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: monitor
@@ -62,7 +62,7 @@ gems:
   source:
     type: git
     name: ruby/gem_rbs_collection
-    revision: 82762423fc5694b82888ea89a972847cf19838c2
+    revision: 2443035126922ee49f775a0edb0b705896fef7c6
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: parser
@@ -70,7 +70,7 @@ gems:
   source:
     type: git
     name: ruby/gem_rbs_collection
-    revision: 82762423fc5694b82888ea89a972847cf19838c2
+    revision: 2443035126922ee49f775a0edb0b705896fef7c6
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: pathname
@@ -94,7 +94,7 @@ gems:
   source:
     type: git
     name: ruby/gem_rbs_collection
-    revision: 82762423fc5694b82888ea89a972847cf19838c2
+    revision: 2443035126922ee49f775a0edb0b705896fef7c6
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: rake
@@ -102,11 +102,11 @@ gems:
   source:
     type: git
     name: ruby/gem_rbs_collection
-    revision: 82762423fc5694b82888ea89a972847cf19838c2
+    revision: 2443035126922ee49f775a0edb0b705896fef7c6
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: rbs
-  version: 4.0.3
+  version: 4.1.1
   source:
     type: rubygems
 - name: rbs-inline
@@ -122,7 +122,7 @@ gems:
   source:
     type: git
     name: ruby/gem_rbs_collection
-    revision: 82762423fc5694b82888ea89a972847cf19838c2
+    revision: 2443035126922ee49f775a0edb0b705896fef7c6
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: rubocop
@@ -130,7 +130,7 @@ gems:
   source:
     type: git
     name: ruby/gem_rbs_collection
-    revision: 82762423fc5694b82888ea89a972847cf19838c2
+    revision: 2443035126922ee49f775a0edb0b705896fef7c6
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: rubocop-ast
@@ -138,7 +138,7 @@ gems:
   source:
     type: git
     name: ruby/gem_rbs_collection
-    revision: 82762423fc5694b82888ea89a972847cf19838c2
+    revision: 2443035126922ee49f775a0edb0b705896fef7c6
     remote: https://github.com/ruby/gem_rbs_collection.git
     repo_dir: gems
 - name: rubocop-numbered-params
