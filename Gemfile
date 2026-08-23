@@ -15,6 +15,7 @@ group :development do
   gem "rubocop-rake"
   gem "rubocop-rbs_inline"
   gem "rubocop-rspec"
+  gem "rubocop-rspec-unused-let"
   gem "ruby-lsp-rspec", require: false
   gem "steep", require: false
 end
