@@ -66,29 +66,29 @@ RSpec.describe RubyLsp::Rbs::Inline::Addon do
             end
           end
         end
-      end
 
-      context "when rbs-inline is not enabled per file" do
-        let(:content) { "class File; end" }
+        context "when rbs-inline is not enabled per file" do
+          let(:content) { "class File; end" }
 
-        context "when opt-out option is true" do
-          let(:opt_out) { true }
+          context "when opt-out option is true" do
+            let(:opt_out) { true }
 
-          it "generates the corresponding RBS file" do
-            subject
+            it "generates the corresponding RBS file" do
+              subject
 
-            expect(rbs_path).to exist
-            expect(rbs_path.read).to include "class File"
+              expect(rbs_path).to exist
+              expect(rbs_path.read).to include "class File"
+            end
           end
-        end
 
-        context "when opt-out option is false" do
-          let(:opt_out) { false }
+          context "when opt-out option is false" do
+            let(:opt_out) { false }
 
-          it "does not generate the corresponding RBS file" do
-            subject
+            it "does not generate the corresponding RBS file" do
+              subject
 
-            expect(rbs_path).not_to exist
+              expect(rbs_path).not_to exist
+            end
           end
         end
       end
@@ -131,6 +131,18 @@ RSpec.describe RubyLsp::Rbs::Inline::Addon do
             subject
 
             expect(rbs_path).not_to exist
+          end
+        end
+
+        context "when the created file does not match ignore_paths" do
+          let(:ignore_paths) { ["other/**/*.rb"] }
+          let(:content) { "# rbs_inline: enabled\nclass File; end" }
+
+          it "generates the corresponding RBS file" do
+            subject
+
+            expect(rbs_path).to exist
+            expect(rbs_path.read).to include "class File"
           end
         end
       end
